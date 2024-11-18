@@ -1,24 +1,28 @@
 # vuedongsan
 
-## Project setup
-```
-yarn install
+# 11/ 18 vuejs 공부 시작
+
+<h2>11/18</h2>
+<h3>데이터바인딩 </h3>
+<h4>하는 이유</h4>
+
+- HTML에 하드코딩 해놓으면 나중에 변경 어려움
+
+- Vue의 실시간 자동 렌더링
+
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
+:속성="데이터이름"
+<h4>:style="스타일">XX 원룸</h4>
+
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
+<h3>반복문</h3>
 
-### Lints and fixes files
 ```
-yarn lint
-```
+  <a v-for="menu in 메뉴들" :key="menu">{{ menu }}</a>
+// 반복문 쓸때 꼭 써야함
+  :key="" 의 용도
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+```
