@@ -1,23 +1,50 @@
 <template>
+  <div class="black-bg" v-if="모달창열렸니 == true">
+    <div class="white-bg">
+      <img :src="원룸들[누른거].image" class="room-img" />
+      <h4>{{ 원룸들[누른거].title }}</h4>
+      <p>{{ 원룸들[누른거].content }}</p>
+      <p>{{ 원룸들[누른거].price }}</p>
+      <button @click="모달창열렸니 = false">닫기</button>
+    </div>
+  </div>
+
   <div class="menu">
     <a v-for="menu in 메뉴들" :key="menu">{{ menu }}</a>
   </div>
 
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <div v-for="(a, i) in 3" :key="i">
-    <h4>{{ products[i] }}</h4>
-    <p>50 만원</p>
+  <div v-for="(rooms, i) in 원룸들" :key="i">
+    <img :src="원룸들[i].image" class="room-img" />
+    <h4
+      @click="
+        모달창열렸니 = true;
+        누른거 = i;
+      "
+    >
+      {{ 원룸들[i].title }}
+    </h4>
+    <p>{{ 원룸들[i].price }}원</p>
   </div>
 </template>
 
 <script>
+import data from "./assets/oneroom.js";
+
 export default {
   name: "App",
   data() {
     return {
+      누른거: 0,
+      원룸들: data,
+      모달창열렸니: false,
       메뉴들: ["HOME", "Shop", "About"],
-      products: ["역삼동원룸", "천호동원룸", "마포구원룸"],
     };
+  },
+
+  methods: {
+    increase() {
+      this.신고수 += 1;
+    },
   },
   components: {},
 };
@@ -30,6 +57,34 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.body {
+  margin: 0;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.black-bg {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  padding: 20px;
+}
+
+.white-bg {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.room-img {
+  width: 100%;
+  margin-top: 40px;
 }
 
 .menu {
